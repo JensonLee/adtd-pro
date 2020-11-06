@@ -23,11 +23,12 @@ const login = (options) => {
 const info = ()=>{
     return builder({
         "roleId":roleId,
+        "username":'上格瑞迈教育'
     })
 }
 
 const logout = () => {
-    return builder({}, '[测试接口] 注销成功')
+    return builder({},'',200, '[测试接口] 注销成功')
 }
 
 Mock.mock("/login", 'post', login)

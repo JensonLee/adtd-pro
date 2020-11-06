@@ -46,7 +46,6 @@
             }
         },
         created(){
-            console.log(this.menu);
 //            generator(this.menu[0]);
         }
     }

@@ -36,7 +36,8 @@ const user = {
         token: '',
         roleId:'',
         addRouter:[],
-        router:[]
+        router:[],
+        userName:''
     },
     mutations:{
         SET_TOKEN:(state,token)=>{
@@ -48,6 +49,9 @@ const user = {
         SET_ROUTER:(state,router)=>{
             state.addRouter = router
             state.router = constantRouterMap.concat(router)
+        },
+        SET_USERNAME:(state,userName)=>{
+            state.userName = userName
         }
     },
     actions:{
@@ -68,6 +72,7 @@ const user = {
                 getUserInfo().then(res=>{
                     const result = res.result
                     commit('SET_ROLEID',result.roleId)
+                    commit('SET_USERNAME',result.username)
                     resolve(res)
                 }).catch(error=>{
                     reject(error)
@@ -83,13 +88,12 @@ const user = {
             })
         },
         Logout({commit,state}){
-            new Promise((resolve,reject)=>{
+            return new Promise((resolve,reject)=>{
                 logout(state.token).then(res=>{
-                    console.log(res);
                     commit('SET_TOKEN',"")
                     commit('SET_ROLEID',"")
                     storage.remove(ACCESS_TOKEN)
-                    resolve()
+                    resolve(res)
                 }).catch(error=>{
                     reject(error)
                 })

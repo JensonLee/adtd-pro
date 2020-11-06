@@ -3,4 +3,5 @@ export default {
     roleId:state=>state.user.roleId,
     addRouter:state=>state.user.addRouter,
     router:state=>state.user.router,
+    userName:state=>state.user.userName,
 }

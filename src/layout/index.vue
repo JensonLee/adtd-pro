@@ -8,6 +8,26 @@
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
           @click="() => (collapsed = !collapsed)"
         />
+        <div class="antd-header-right">
+          <span class="antd-notification-header">
+              <router-link to="">
+                <a-badge :count="notificationCount" dot>
+                     <a-icon type="bell" />
+                  </a-badge>
+              </router-link>
+          </span>
+
+          <a-dropdown>
+            <span class="ant-dropdown-link" @click="e => e.preventDefault()">
+              {{userName}}
+            </span>
+            <a-menu slot="overlay">
+              <a-menu-item>
+                <a href="javascript:;" @click="handleLogout"><a-icon type="poweroff" /> 退出</a>
+              </a-menu-item>
+            </a-menu>
+          </a-dropdown>
+        </div>
       </a-layout-header>
       <div class="breadcrumb-header">
         <a-breadcrumb>
@@ -26,23 +46,31 @@
 
 <script>
   import SlideMenu from "./slideMenu.vue"
-  import {mapGetters} from 'vuex'
+  import {mapGetters,mapActions} from 'vuex'
 export default {
     data() {
         return {
             collapsed: false,
-            slideMenuNav:[]
+            slideMenuNav:[],
+            notificationCount:0
         };
     },
     components:{
         SlideMenu
     },
     computed:{
-        ...mapGetters(['addRouter'])
+        ...mapGetters(['addRouter','userName'])
+    },
+    methods:{
+        ...mapActions(['Logout']),
+        handleLogout(){
+            this.Logout().then(()=>{
+                this.$router.push({path:'/login'})
+            })
+        }
     },
     created(){
         this.slideMenuNav = this.addRouter[0].children
-        console.log(this.$route);
     }
 
 };

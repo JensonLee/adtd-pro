@@ -16,7 +16,7 @@ export const asyncRouterMap = [
                 path: '/dashboard',
                 name: 'dashboard',
                 component: ()=>import('@/views/dashboard/dashboard'),
-                meta:{title:'仪表页',permission:["admin","user_admin"]}
+                meta:{title:'主页',permission:["admin","user_admin"]}
             },
             {
                 path:'/business',

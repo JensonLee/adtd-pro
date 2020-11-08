@@ -35,9 +35,7 @@
           <a-breadcrumb-item>{{$route.meta.title}}</a-breadcrumb-item>
         </a-breadcrumb>
       </div>
-      <a-layout-content
-        :style="{ margin: '12px 12px', padding: '24px', background: '#fff',  }"
-      >
+      <a-layout-content>
         <router-view/>
       </a-layout-content>
     </a-layout>

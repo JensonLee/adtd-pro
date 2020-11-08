@@ -3,6 +3,7 @@
 const Mock = require('mockjs')
 
 require('./modules/user/login')
+require('./modules/business')
 
 
 

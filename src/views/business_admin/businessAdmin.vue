@@ -49,7 +49,7 @@
             </a-form>
         </div>
         <div class="tool-tip">
-            <a-button type="primary">新建</a-button>
+            <a-button type="primary" v-action:add>新建</a-button>
         </div>
         <div class="">
             <a-table bordered :data-source="tableData" :columns="columns" :pagination="pagination">
@@ -68,6 +68,7 @@
 </template>
 <script>
     import {mapActions} from 'vuex'
+    import STable from '@/components/Table'
     const columns=[
         {
             title: '企业名称',
@@ -126,7 +127,6 @@
             ...mapActions(['GetBusinessAdminTable']),
             loadData(){
                 let params = this.queryParams
-                console.log(params);
                 this.GetBusinessAdminTable(params).then(res=>{
                     this.tableData = res.result.businessAdminTable
                 })

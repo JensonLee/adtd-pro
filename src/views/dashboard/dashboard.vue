@@ -24,7 +24,7 @@
     </a-row>
     <a-row class="antd-panel">
       <a-col :span="18">
-
+        
       </a-col>
       <a-col :span="6">
         2

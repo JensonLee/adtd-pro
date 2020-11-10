@@ -21,8 +21,9 @@ router.beforeEach((to, from, next)=>{
     }else{
         if(store.getters.roleId ===""){
             store.dispatch("GetUserInfo").then(res=>{
-              const result = res.result
-                store.dispatch('GenerateRoutes',result.roleId).then(()=>{
+              const roles = res.result && res.result.role
+              // const result = res.result
+                store.dispatch('GenerateRoutes',{roles}).then(()=>{
                     router.addRoutes(store.getters.addRouter)
                     const redirect = decodeURIComponent(from.query.redirect || to.path)
                     if (to.path === redirect) {

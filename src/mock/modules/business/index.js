@@ -1,7 +1,9 @@
 import Mock from 'mockjs'
-import { builder } from './../../util'
+import { builder,getBody } from './../../util'
 
-const businessAdmin = () => {
+const businessAdmin = (opt) => {
+  const body = getBody(opt)
+  console.log(body);
     return builder({
         businessAdminTable:[
             {

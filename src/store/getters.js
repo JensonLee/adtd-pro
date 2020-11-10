@@ -4,4 +4,5 @@ export default {
     addRouter:state=>state.user.addRouter,
     router:state=>state.user.router,
     userName:state=>state.user.userName,
+    roles:state=>state.user.roles
 }

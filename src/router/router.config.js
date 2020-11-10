@@ -16,32 +16,32 @@ export const asyncRouterMap = [
                 path: '/dashboard',
                 name: 'dashboard',
                 component: ()=>import('@/views/dashboard/dashboard'),
-                meta:{title:'主页',permission:["admin","user_admin"]}
+                meta:{title:'主页',permission:["dashboard"]}
             },
             {
                 path:'/business',
                 name:'business',
                 redirect:'/business/business_admin',
                 component:RouteView,
-                meta:{title:'企业管理',permission:["admin","user_admin"]},
+                meta:{title:'企业管理',permission:["business"]},
                 children:[
                     {
                         path:'/business/business_admin',
                         name:'business_admin',
                         component:()=>import('@/views/business_admin/businessAdmin'),
-                        meta:{title:'企业管理',permission:["admin"]}
+                        meta:{title:'企业管理',permission:["business"],parentPath:'business'}
                     },
                     {
                         path:'/business/business_class',
                         name:'business_class',
                         component:()=>import('@/views/business_admin/businessClass'),
-                        meta:{title:'企业部门',permission:["user_admin","admin"]}
+                        meta:{title:'企业部门',permission:["businessClass"],parentPath:'business'}
                     },
                     {
                         path:"/business/business_person",
                         name:"business_person",
                         component:()=>import('@/views/business_admin/businessPerson'),
-                        meta:{title:'企业员工',permission:["admin"]},
+                        meta:{title:'企业员工',permission:["businessPerson"],parentPath:'business'},
                         hidden:true
                     }
                 ]

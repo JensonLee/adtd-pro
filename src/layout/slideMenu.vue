@@ -1,7 +1,12 @@
 <template>
     <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
         <div class="logo" />
-        <a-menu theme="dark" mode="inline" :default-selected-keys="['1']" class="aaaa">
+        <a-menu 
+          theme="dark" 
+          mode="inline" 
+          :default-selected-keys="[defaultSelectMenu]" 
+          :default-open-keys="[defaultOpenKey]" class="aaaa"
+          >
             <template v-for="item in menu">
                 <a-menu-item :key="item.name" v-if="!item.children">
                     <router-link :to="item.path">
@@ -33,6 +38,7 @@
 </template>
 <script>
 //    import {fillterRouter} from '@/router/generator-routers'
+import {mapGetters} from 'vuex'
     export default {
         name:"slide_menu",
         props:{
@@ -45,8 +51,26 @@
                 default:()=>[]
             }
         },
+        data(){
+          return {
+            defaultSelectMenu:"dashboard",
+            defaultOpenKey:''
+          }
+        },
+        computed:{
+          ...mapGetters(['roles'])
+        },
+        methods:{
+          initMenuParames(){
+            this.defaultSelectMenu = this.$route.name;
+            this.defaultOpenKey = this.$route.meta.parentPath && this.$route.meta.parentPath != "" ? this.$route.meta.parentPath : ""
+          }
+        },
         created(){
 //            generator(this.menu[0]);
+          console.log(this.roles)
+          this.initMenuParames()
+          console.log(this.$route);
         }
     }
 </script>

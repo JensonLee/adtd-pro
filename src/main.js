@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 import './permission'
 import './global.less'
+import './config/action'
 import { VueAxios } from './util/request'
 Vue.config.productionTip = false
 

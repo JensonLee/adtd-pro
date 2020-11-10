@@ -5,29 +5,30 @@ import {asyncRouterMap,constantRouterMap} from '@/router/router.config'
 
 
 
-
-function hasPermission (roles, route) {
-    if (route.meta && route.meta.permission) {
-        let flag = false
-        flag = route.meta.permission.includes(roles)
-        if (flag) {
-            return true
-        }
-        return false
+function hasPermission (permission, route) {
+  if (route.meta && route.meta.permission) {
+    let flag = false
+    for (let i = 0, len = permission.length; i < len; i++) {
+      flag = route.meta.permission.includes(permission[i])
+      if (flag) {
+        return true
+      }
     }
-    return true
+    return false
+  }
+  return true
 }
 function filterAsyncRouter (routerMap, roles) {
-    const accessedRouters = routerMap.filter(route => {
-        if (hasPermission(roles, route)) {
-            if (route.children && route.children.length) {
-                route.children = filterAsyncRouter(route.children, roles)
-            }
-            return true
-        }
-        return false
-    })
-    return accessedRouters
+  const accessedRouters = routerMap.filter(route => {
+    if (hasPermission(roles.permissionList, route)) {
+      if (route.children && route.children.length) {
+        route.children = filterAsyncRouter(route.children, roles)
+      }
+      return true
+    }
+    return false
+  })
+  return accessedRouters
 }
 
 
@@ -37,7 +38,9 @@ const user = {
         roleId:'',
         addRouter:[],
         router:[],
-        userName:''
+        userName:'',
+        roles:[],
+        info:{}
     },
     mutations:{
         SET_TOKEN:(state,token)=>{
@@ -52,6 +55,12 @@ const user = {
         },
         SET_USERNAME:(state,userName)=>{
             state.userName = userName
+        },
+        SET_ROLES:(state,roles)=>{
+          state.roles = roles
+        },
+        SET_INFO:(state,info)=>{
+          state.info = info
         }
     },
     actions:{
@@ -71,6 +80,19 @@ const user = {
             return new Promise((resolve,reject)=>{
                 getUserInfo().then(res=>{
                     const result = res.result
+                    if (result.role && result.role.permissions.length > 0) {
+                      const role = result.role
+                      role.permissions = result.role.permissions
+                      role.permissions.map(per => {
+                        if (per.actionEntitySet != null && per.actionEntitySet.length > 0) {
+                          const action = per.actionEntitySet.map(action => { return action.action })
+                          per.actionList = action
+                        }
+                      })
+                      role.permissionList = role.permissions.map(permission => { return permission.permissionId })
+                      commit('SET_ROLES',result.role)
+                      commit('SET_INFO',result)
+                    }
                     commit('SET_ROLEID',result.roleId)
                     commit('SET_USERNAME',result.username)
                     resolve(res)
@@ -79,10 +101,10 @@ const user = {
                 })
             })
         },
-        GenerateRoutes({commit},roleId){
+        GenerateRoutes({commit},role){
             return new Promise(resolve=>{
-                console.log(roleId);
-                const accessedRouters = filterAsyncRouter(asyncRouterMap,roleId)
+                const { roles } = role
+                const accessedRouters = filterAsyncRouter(asyncRouterMap,roles)
                 commit('SET_ROUTER',accessedRouters)
                 resolve()
             })

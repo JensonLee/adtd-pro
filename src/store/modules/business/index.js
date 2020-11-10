@@ -8,7 +8,7 @@ const business = {
     },
     actions:{
         GetBusinessAdminTable({commit},params){
-            console.log(commit)
+          
             return new Promise((resolve,reject)=>{
                 businessAdminTable(params).then(res=>{
                     resolve(res)

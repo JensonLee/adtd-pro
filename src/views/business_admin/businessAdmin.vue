@@ -137,33 +137,7 @@
 </script>
 
 <style lang="less" rel="stylesheet/less">
-    .page-search-wrap{
-        .ant-form-inline{
-            .ant-form-item{
-                display: flex;
-                margin-bottom: 24px;
-                margin-right: 0;
-
-                .ant-form-item-label{
-                    margin-right: 8px;
-                    line-height:32px;
-                }
-                .ant-form-item-control-wrapper{
-                    flex: 1;
-                    vertical-align: middle;
-                    display: inline-block;
-                    .ant-form-item-control{
-                        line-height: 32px;
-                        height:32px;
-                    }
-                }
-            }
-        }
-    }
     .table-operation-action{
         padding: 0 6px;
-    }
-    .tool-tip{
-        margin-bottom: 24px;
     }
 </style>

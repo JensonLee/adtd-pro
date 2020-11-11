@@ -10,12 +10,12 @@
             <template v-for="item in menu">
                 <a-menu-item :key="item.name" v-if="!item.children">
                     <router-link :to="item.path">
-                        <a-icon type="user" />
+                        <a-icon :type="item.meta.icon" />
                         <span>{{item.meta.title}}</span>
                     </router-link>
                 </a-menu-item>
                 <a-sub-menu :key="item.name" v-if="item.children && item.children.length>0">
-                    <span slot="title"><a-icon type="mail" /><span>{{item.meta.title}}</span></span>
+                    <span slot="title"><a-icon :type="item.meta.icon" /><span>{{item.meta.title}}</span></span>
                     <a-menu-item :key="subItem.name" v-for="subItem in item.children">
                         <router-link :to="subItem.path">{{subItem.meta.title}}</router-link>
                     </a-menu-item>
@@ -63,14 +63,11 @@ import {mapGetters} from 'vuex'
         methods:{
           initMenuParames(){
             this.defaultSelectMenu = this.$route.name;
-            this.defaultOpenKey = this.$route.meta.parentPath && this.$route.meta.parentPath != "" ? this.$route.meta.parentPath : ""
+            this.defaultOpenKey = this.$route.meta.perentPath ? this.$route.meta.perentPath : ""
           }
         },
         created(){
-//            generator(this.menu[0]);
-          console.log(this.roles)
           this.initMenuParames()
-          console.log(this.$route);
         }
     }
 </script>

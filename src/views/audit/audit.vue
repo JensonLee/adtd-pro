@@ -43,13 +43,18 @@
       :data="loadData"
     >
       <span slot="status" slot-scope="text, record">
-        <span :class="'state-'+record.state">{{record.stateText}}</span>
+        <a-tag color="cyan" v-if="record.state == '0'">{{record.stateText}}</a-tag>
+        <a-tag color="green" v-if="record.state == '1'">{{record.stateText}}</a-tag>
+        <a-tag color="red" v-if="record.state == '2'">{{record.stateText}}</a-tag>
       </span>
       <span slot="action" slot-scope="text, record">
-        <template>
-            <a>通过</a>
-            <a>拒绝</a>
-          </template>
+        <template v-if="record.state == '0'">
+            <a href="javascript:void(0)" class="table-operation-action">通过</a>
+            <a href="javascript:void(0)" class="table-operation-action">拒绝</a>
+        </template>
+        <template v-else>
+            <a href="javascript:void(0)" class="table-operation-action" style="color:#666">撤回</a>
+        </template>
       </span>
     </s-table>
     </div>
@@ -99,7 +104,6 @@ const columns = [
   }
 ]
 export default {
-  
   data(){
     return {
       columns,
@@ -108,7 +112,6 @@ export default {
         console.log('loadData.parameter', parameter)
         return getAuditList(Object.assign(parameter, this.queryParams))
           .then(res => {
-            console.log(res)
             return res.result
           })
       }
@@ -121,7 +124,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
   .antd-table-wrap {
     .state-0{
       color: #2db7f5;

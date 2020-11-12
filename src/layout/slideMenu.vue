@@ -1,11 +1,13 @@
 <template>
     <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
-        <div class="logo" />
+        <div class="antd-admin-logo">
+          <div class="logo"></div>
+        </div>
         <a-menu 
           theme="dark" 
           mode="inline" 
           :default-selected-keys="[defaultSelectMenu]" 
-          :default-open-keys="[defaultOpenKey]" class="aaaa"
+          :default-open-keys="[defaultOpenKey]"
           >
             <template v-for="item in menu">
                 <a-menu-item :key="item.name" v-if="!item.children">
@@ -21,18 +23,6 @@
                     </a-menu-item>
                 </a-sub-menu>
             </template>
-            <!--<a-menu-item key="1">
-                <a-icon type="user" />
-                <span>nav 1</span>
-            </a-menu-item>
-            <a-menu-item key="2">
-                <a-icon type="video-camera" />
-                <span>nav 2</span>
-            </a-menu-item>
-            <a-menu-item key="3">
-                <a-icon type="upload" />
-                <span>nav 3</span>
-            </a-menu-item>-->
         </a-menu>
     </a-layout-sider>
 </template>
@@ -63,7 +53,7 @@ import {mapGetters} from 'vuex'
         methods:{
           initMenuParames(){
             this.defaultSelectMenu = this.$route.name;
-            this.defaultOpenKey = this.$route.meta.perentPath ? this.$route.meta.perentPath : ""
+            this.defaultOpenKey = this.$route.meta.parentPath ? this.$route.meta.parentPath : ""
           }
         },
         created(){
@@ -72,10 +62,14 @@ import {mapGetters} from 'vuex'
     }
 </script>
 
-<style type="less" scoped>
-    .logo{
-        height: 32px;
-        background: rgba(255, 255, 255, 0.2);
-        margin: 16px;
+<style lang="less" scoped>
+    .antd-admin-logo{
+        height: 64px;
+        padding: 16px;
+        width: 200px;
+        .logo{
+          background: rgba(255, 255, 255, 0.2);
+          height: 32px;
+        }
     }
 </style>

@@ -51,29 +51,34 @@
         <div class="tool-tip">
             <a-button type="primary" v-action:add>新建</a-button>
         </div>
-        <div class="">
-            <a-table bordered :data-source="tableData" :columns="columns" :pagination="pagination">
-                <template slot="operation">
-                    <a href="javascript:;" class="table-operation-action">详情</a>
-                    <a href="javascript:;" class="table-operation-action">编辑</a>
-                    <a href="javascript:;" class="table-operation-action">删除</a>
-                    <a href="javascript:;" class="table-operation-action">充值</a>
-                    <a href="javascript:;" class="table-operation-action">续约</a>
-                    <a href="javascript:;" class="table-operation-action">分配课程</a>
-                    <a href="javascript:;" class="table-operation-action">已分配课程</a>
-                </template>
-            </a-table>
+        <div class="antd-table-wrap">
+            <s-table
+              ref="table"
+              size="default"
+              rowKey='key'
+              :columns="columns"
+              :data="loadData"
+            >
+              <template slot="operation" slot-scope="text,record">
+                <a href="javascript:;" class="table-operation-action" @click="handleDetail(record)">详情</a>
+                <a href="javascript:;" class="table-operation-action">编辑</a>
+                <a href="javascript:;" class="table-operation-action">删除</a>
+                <a href="javascript:;" class="table-operation-action">充值</a>
+                <a href="javascript:;" class="table-operation-action">续约</a>
+                <a href="javascript:;" class="table-operation-action">分配课程</a>
+                <a href="javascript:;" class="table-operation-action">已分配课程</a>
+              </template>
+            </s-table>
         </div>
     </div>
 </template>
 <script>
-    import {mapActions} from 'vuex'
     import STable from '@/components/Table'
+    import {businessAdminTable} from '@/api/business'
     const columns=[
         {
             title: '企业名称',
-            dataIndex: 'business_name',
-            width: '20%'
+            dataIndex: 'business_name'
         },
         {
             title: '所属渠道',
@@ -102,42 +107,33 @@
         {
             title:'操作',
             dataIndex:'operation',
-            scopedSlots: { customRender: 'operation' }
+            scopedSlots: { customRender: 'operation' },
+            width:'382px'
         }
     ]
     export default {
         data(){
             return {
                 queryParams:{},
-                tableData:[],
                 columns,
-                pagination: {
-                    total: 0,
-                    pageSize: 10,//每页中显示10条数据
-                    showSizeChanger: true,
-                    pageSizeOptions: ["10", "20", "50", "100"],//每页中显示的数据
-                    showTotal: total => `共有 ${total} 条数据`,  //分页中显示总的数据
+                loadData:paramter => {
+                  return businessAdminTable(Object.assign(paramter,this.queryParams)).then(res=>{
+                    return res.result
+                  })
                 }
             }
         },
+        components:{
+          STable
+        },
         created(){
-            this.loadData()
+            
         },
         methods:{
-            ...mapActions(['GetBusinessAdminTable']),
-            loadData(){
-                let params = this.queryParams
-                this.GetBusinessAdminTable(params).then(res=>{
-                    this.tableData = res.result.businessAdminTable
-                })
+            handleDetail(r){
+              alert(JSON.stringify(r))
             }
         },
 
     }
 </script>
-
-<style lang="less" rel="stylesheet/less">
-    .table-operation-action{
-        padding: 0 6px;
-    }
-</style>

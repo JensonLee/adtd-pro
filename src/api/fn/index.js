@@ -14,3 +14,11 @@ export function shoppingMallList(params){
         data:params
     })
 }
+
+export function contestList(params) {
+    return request({
+        url:"/fn/contestList",
+        method:"get",
+        data:params
+    })
+}

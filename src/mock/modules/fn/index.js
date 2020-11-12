@@ -64,6 +64,37 @@ const shoppingMallList = (opt)=>{
   })
 }
 
-Mock.mock('/fn/config','get',fnInfo)
+const contestList = (opt) =>{
+  return builder({
+      pageSize:10,
+      pageNo:1,
+      totalCount:20,
+      totalPage:2,
+      data:[
+          {
+              businessName:'寿光宏宇化工有限公司',
+              contestId:'380',
+              contestName:'蒸汽水锤的危害及控制',
+              createDate:'2019-12-21',
+              contestImg:Mock.mock('@image(200X100)'),
+              scoring:'80',
+              startDate:'2020-10-01',
+              endDate:'2020-11-12'
+          },
+          {
+              businessName:'浙江省海翔药业',
+              contestId:'381',
+              contestName:'事故根源分析（基础篇）',
+              createDate:'2019-12-21',
+              contestImg:Mock.mock('@image(200X100)'),
+              scoring:'88',
+              startDate:'2020-10-01',
+              endDate:'2020-11-12'
+          }
+      ]
+  })
+}
 
+Mock.mock('/fn/config','get',fnInfo)
 Mock.mock('/fn/shoppingMallList','get',shoppingMallList)
+Mock.mock('/fn/contestList','get',contestList)

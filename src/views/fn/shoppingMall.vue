@@ -36,7 +36,7 @@
           <a-tag color="red" v-if="record.status=='0'">已结束</a-tag>
         </template>
         <template slot="action">
-          <a href="javascript:void(0)" class="table-operation-action">兑换记录</a>
+          <router-link to="" class="table-operation-action">兑换记录</router-link>
         </template>
       </s-table>
     </div>

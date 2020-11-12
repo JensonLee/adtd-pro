@@ -36,92 +36,94 @@
     </div>
     <div class="antd-table-wrap">
       <s-table
-      ref="table"
-      size="default"
-      rowKey="id"
-      :columns="columns"
-      :data="loadData"
-    >
+              ref="table"
+              size="default"
+              rowKey="id"
+              :columns="columns"
+              :data="loadData"
+      >
       <span slot="status" slot-scope="text, record">
-        <span :class="'state-'+record.state">{{record.stateText}}</span>
+        <a-tag color="cyan" v-if="record.state == '0'">{{record.stateText}}</a-tag>
+        <a-tag color="green" v-if="record.state == '1'">{{record.stateText}}</a-tag>
+        <a-tag color="red" v-if="record.state == '2'">{{record.stateText}}</a-tag>
       </span>
-      <span slot="action" slot-scope="text, record">
-        <template>
-            <a>通过</a>
-            <a>拒绝</a>
-          </template>
+        <span slot="action" slot-scope="text, record">
+        <template v-if="record.state == '0'">
+            <a href="javascript:void(0)" class="table-operation-action">通过</a>
+            <a href="javascript:void(0)" class="table-operation-action">拒绝</a>
+        </template>
+        <template v-else>
+            <a href="javascript:void(0)" class="table-operation-action" style="color:#666">撤回</a>
+        </template>
       </span>
-    </s-table>
+      </s-table>
     </div>
   </div>
 </template>
 <script>
-import {STable} from '@/components'
-import { getAuditList } from "@/api/audit";
-const columns = [
-  {
-    title:'企业名称',
-    dataIndex:'businessName'
-  },
-  {
-    title:'联系人',
-    dataIndex:"contact"
-  },
-  {
-    title:'推荐人',
-    dataIndex:"recommender"
-  },
-  {
-    title:'联系电话',
-    dataIndex:"phoneNo"
-  },
-  {
-    title:'邮箱',
-    dataIndex:"email"
-  },
-  {
-    title:'提交时间',
-    dataIndex:"upDate"
-  },
-  {
-    title:'审批备注',
-    dataIndex:"marks"
-  },
-  {
-    title:'状态',
-    dataIndex:"status",
-    scopedSlots:{customRender: 'status'}
-  },
-  {
-    title:"操作",
-    dataIndex:'action',
-    scopedSlots:{customRender: 'action'}
-  }
-]
-export default {
-  
-  data(){
-    return {
-      columns,
-      queryParams:{},
-      loadData: parameter => {
-        console.log('loadData.parameter', parameter)
-        return getAuditList(Object.assign(parameter, this.queryParams))
-          .then(res => {
-            console.log(res)
-            return res.result
-          })
-      }
+    import {STable} from '@/components'
+    import { getAuditList } from "@/api/audit";
+    const columns = [
+        {
+            title:'企业名称',
+            dataIndex:'businessName'
+        },
+        {
+            title:'联系人',
+            dataIndex:"contact"
+        },
+        {
+            title:'推荐人',
+            dataIndex:"recommender"
+        },
+        {
+            title:'联系电话',
+            dataIndex:"phoneNo"
+        },
+        {
+            title:'邮箱',
+            dataIndex:"email"
+        },
+        {
+            title:'提交时间',
+            dataIndex:"upDate"
+        },
+        {
+            title:'审批备注',
+            dataIndex:"marks"
+        },
+        {
+            title:'状态',
+            dataIndex:"status",
+            scopedSlots:{customRender: 'status'}
+        },
+        {
+            title:"操作",
+            dataIndex:'action',
+            scopedSlots:{customRender: 'action'}
+        }
+    ]
+    export default {
+        data(){
+            return {
+                columns,
+                queryParams:{},
+                loadData: parameter => {
+                    console.log('loadData.parameter', parameter)
+                    return getAuditList(Object.assign(parameter, this.queryParams))
+                        .then(res => {
+                            return res.result
+                        })
+                }
+            }
+        },
+        components:{
+            STable
+        }
     }
-  },
-  components:{
-    STable
-  }
-}
 </script>
 
 <style lang="less" scoped>
-
   .antd-table-wrap {
     .state-0{
       color: #2db7f5;

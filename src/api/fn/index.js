@@ -7,3 +7,10 @@ export function fnConfig(params){
     data:params
   })
 }
+export function shoppingMallList(params){
+    return request({
+        url:"/fn/shoppingMallList",
+        method:'get',
+        data:params
+    })
+}

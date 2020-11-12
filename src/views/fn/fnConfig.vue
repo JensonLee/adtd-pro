@@ -23,16 +23,16 @@
           :columns='columns'
           :data="loadData"
         >
-          <template slot="fn_staus" slot-scope="text,record">
-            <span class="fn-staus" >企业竞赛 {{record.fnStaus.dataFn}}</span>
-            <!-- <span class="fn-staus" :class="{"fn-staus-on" : record.fnStaus.dataFn}">资料库</span> -->
-            <!-- <span class="fn-staus" :class="{"fn-staus-on":record.fnStaus.fileFn =='1'}">企业空间</span>
-            <span class="fn-staus" :class="{"fn-staus-on":record.fnStaus.everyDayTestFn =='1'}">每日一测</span>
-            <span class="fn-staus" :class="{"fn-staus-on":record.fnStaus.shoppingMallFn =='1'}">企业商城</span> -->
+          <template slot="fn_status" slot-scope="text,record">
+            <span class="fn-status" :class="{'fn-status-on':record.fnStaus.contestFn=='1'}">企业竞赛</span>
+             <span class="fn-status" :class="{'fn-status-on' : record.fnStaus.dataFn}">资料库</span>
+             <span class="fn-status" :class="{'fn-status-on':record.fnStaus.fileFn =='1'}">企业空间</span>
+            <span class="fn-status" :class="{'fn-status-on':record.fnStaus.everyDayTestFn =='1'}">每日一测</span>
+            <span class="fn-status" :class="{'fn-status-on':record.fnStaus.shoppingMallFn =='1'}">企业商城</span>
           </template>
           <template slot="action">
-            <a href="javascript:void(0)">企业功能</a>
-            <a href="javascript:void(0)">功能详情</a>
+            <a href="javascript:void(0)" class="table-operation-action">企业功能</a>
+            <a href="javascript:void(0)" class="table-operation-action">功能详情</a>
           </template>
         </s-table>
       </div>
@@ -48,8 +48,8 @@
         dataIndex:'businessName'
       },{
         title:'功能开通状态',
-        dataIndex:'fn_staus',
-        scopedSlots:{customRender:"fn_staus"}
+        dataIndex:'fn_status',
+        scopedSlots:{customRender:"fn_status"}
       },{
         title:'操作',
         dataIndex:'action',
@@ -75,6 +75,26 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="less" scoped>
+  .fn-status{
+    border:1px solid #d9d9d9;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 12px;
+    padding: 0 7px;
+    line-height: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #fafafa;
+    margin-right:8px;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .fn-status.fn-status-on{
+    background-color: #87d068;
+    color: #ffffff;
+    border-color: #87d068;
+  }
 </style>

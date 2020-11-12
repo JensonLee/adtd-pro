@@ -29,13 +29,13 @@ export const asyncRouterMap = [
                   path:'/auth/role',
                   name:'role',
                   component:()=>import('@/views/auth/role'),
-                  meta:{title:'角色管理',permission:['role'],perentPath:'auth'}
+                  meta:{title:'角色管理',permission:['role'],parentPath:'auth'}
                 },
                 {
                   path:'/auth/user',
                   name:'user',
                   component:()=>import('@/views/auth/user'),
-                  meta:{title:'用户管理',permission:['auth'],perentPath:'auth'}
+                  meta:{title:'用户管理',permission:['auth'],parentPath:'auth'}
                 }
               ]
             },
@@ -50,19 +50,19 @@ export const asyncRouterMap = [
               name:'channel',
               redirect:'/channel/channel_admin',
               component:RouteView,
-              meta:{title:"渠道管理",permission:['channelAdmin'],icon:"schedule"},
+              meta:{title:"渠道管理",permission:['channelAdmin'],icon:"tags"},
               children:[
                 {
                   path:'/channel/channel_admin',
                   name:'channel_admin',
                   component:()=>import('@/views/channel_admin/channelAdmin'),
-                  meta:{title:'渠道管理员',permission:['channelAdmin'],perentPath:'channel'}
+                  meta:{title:'渠道管理员',permission:['channelAdmin'],parentPath:'channel'}
                 },
                 {
                   path:'/channel/channel_info',
                   name:'channel_info',
                   component:()=>import('@/views/channel_admin/channelInfo'),
-                  meta:{title:'渠道信息',permission:['channelInfo'],perentPath:'channel'}
+                  meta:{title:'渠道信息',permission:['channelInfo'],parentPath:'channel'}
                 }
               ]
             },
@@ -95,7 +95,7 @@ export const asyncRouterMap = [
                         path:"/business/business_file",
                         name:"business_file",
                         component:()=>import('@/views/business_admin/businessFile'),
-                        meta:{title:'企业员工',permission:["businessFile"],parentPath:'business'}
+                        meta:{title:'企业空间文件',permission:["businessFile"],parentPath:'business'}
                     }
                 ]
             },
@@ -104,25 +104,25 @@ export const asyncRouterMap = [
               name:'fn',
               redirect:'/fn/fn_config',
               component:RouteView,
-              meta:{title:"功能配置",permission:['fnConfig'],icon:"schedule"},
+              meta:{title:"功能配置",permission:['fnConfig'],icon:"api"},
               children:[
                 {
                   path:'/fn/fn_config',
                   name:'fn_config',
                   component:()=>import('@/views/fn/fnConfig'),
-                  meta:{title:'配置管理',permission:['fnConfig'],perentPath:'fn'}
+                  meta:{title:'配置管理',permission:['fnConfig'],parentPath:'fn'}
                 },
                 {
                   path:'/fn/shopping_mall',
                   name:'shopping_mall',
                   component:()=>import('@/views/fn/shoppingMall'),
-                  meta:{title:'企业商城',permission:['shoppingMall'],perentPath:'fn'}
+                  meta:{title:'企业商城',permission:['shoppingMall'],parentPath:'fn'}
                 },
                 {
                   path:'/fn/contest',
                   name:'contest',
                   component:()=>import('@/views/fn/contest'),
-                  meta:{title:'企业竞赛',permission:['contest'],perentPath:'fn'}
+                  meta:{title:'企业竞赛',permission:['contest'],parentPath:'fn'}
                 }
               ]
             }

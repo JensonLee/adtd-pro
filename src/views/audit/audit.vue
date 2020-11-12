@@ -45,9 +45,9 @@
       <span slot="status" slot-scope="text, record">
         <span :class="'state-'+record.state">{{record.stateText}}</span>
       </span>
-      <span slot="action" >
+      <span slot="action" slot-scope="text, record">
         <template>
-            <a >通过</a>
+            <a>通过</a>
             <a>拒绝</a>
           </template>
       </span>

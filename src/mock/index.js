@@ -5,6 +5,8 @@ const Mock = require('mockjs')
 require('./modules/user/login')
 require('./modules/auth')
 require('./modules/audit')
+require('./modules/channel')
+require('./modules/fn')
 require('./modules/business')
 
 

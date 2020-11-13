@@ -1,5 +1,5 @@
 {
-  "name": "antd-admin",
+  "name": "Management-platform",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -30,7 +30,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "less": "^3.12.2",
-    "less-loader": "^7.0.2",
+    "less-loader": "^5.0.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

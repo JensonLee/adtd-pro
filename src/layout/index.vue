@@ -6,7 +6,7 @@
         <a-icon
           class="trigger"
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-          @click="() => (collapsed = !collapsed)"
+          @click="toggleCollapsed"
         />
         <div class="antd-header-right">
           <span class="antd-notification-header">
@@ -65,6 +65,9 @@ export default {
             this.Logout().then(()=>{
                 this.$router.push({path:'/login'})
             })
+        },
+        toggleCollapsed(){
+            this.collapsed = !this.collapsed
         }
     },
     created(){

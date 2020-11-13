@@ -1,3 +1,4 @@
+
 body,html,#app,#root{
   height:100%;
   .admin-wrap{
@@ -44,6 +45,40 @@ body,html,#app,#root{
   .ant-layout-sider-children{
     width: 232px;
     overflow-y: auto;
+
+    .antd-admin-logo{
+      height: 64px;
+      padding: 16px;
+      width: 200px;
+      border-bottom:1px solid rgba(255, 255, 255, 0.2);
+      .logo{
+        height: 32px;
+        vertical-align: middle;
+        line-height: 32px;
+        display: flex;
+        justify-content: center;
+        img{
+          width: 32px;
+          height:32px;
+          margin-right: 8px;
+          display: inline-block;
+        }
+        .logo-title{
+          font-size: 18px;
+          color: #ffffff;
+          flex: 1;
+        }
+        .logo-title{
+          -webkit-transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+          -moz-transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+          -ms-transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+          -o-transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+          transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+          white-space: nowrap;
+          font-weight: 600;
+        }
+      }
+    }
     .ant-menu{
       width: 200px;
     }
@@ -51,6 +86,15 @@ body,html,#app,#root{
 }
 .ant-layout-sider.ant-layout-sider-collapsed{
   .ant-layout-sider-children{
+    .antd-admin-logo{
+      .logo{
+        width: 64px;
+        .logo-title{
+          opacity: 0;
+          max-width: 0;
+        }
+      }
+    }
     .ant-menu{
       width:80px;
     }

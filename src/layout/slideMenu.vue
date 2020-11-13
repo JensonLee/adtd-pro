@@ -1,13 +1,16 @@
 <template>
-    <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
+    <a-layout-sider v-model="collapsed" :trigger="null" >
         <div class="antd-admin-logo">
-          <div class="logo"></div>
+          <div class="logo">
+              <img src="~@/assets/logo.png" alt="">
+              <span class="logo-title">瑞迈教育</span>
+          </div>
         </div>
         <a-menu 
           theme="dark" 
           mode="inline" 
-          :default-selected-keys="[defaultSelectMenu]" 
-          :default-open-keys="[defaultOpenKey]"
+          :default-selected-keys="[defaultSelectMenu]"
+          :default-open-keys="defaultOpenKey"
           >
             <template v-for="item in menu">
                 <a-menu-item :key="item.name" v-if="!item.children">
@@ -27,7 +30,6 @@
     </a-layout-sider>
 </template>
 <script>
-//    import {fillterRouter} from '@/router/generator-routers'
 import {mapGetters} from 'vuex'
     export default {
         name:"slide_menu",
@@ -44,33 +46,39 @@ import {mapGetters} from 'vuex'
         data(){
           return {
             defaultSelectMenu:"dashboard",
-            defaultOpenKey:''
+            defaultOpenKey:[]
           }
         },
         computed:{
-          ...mapGetters(['roles'])
+          ...mapGetters(['roles']),
+            subMenu(){
+              const subMenuList = []
+              this.menu.filter(t=>{
+                  if(t.children && t.children.length){
+                      subMenuList.push(t.name)
+                      return true
+                  }
+                  return false
+              })
+                return subMenuList
+            }
         },
         methods:{
           initMenuParames(){
             this.defaultSelectMenu = this.$route.name;
-            this.defaultOpenKey = this.$route.meta.parentPath ? this.$route.meta.parentPath : ""
-          }
+            this.defaultOpenKey.push(this.$route.meta.parentPath ? this.$route.meta.parentPath : "")
+          },
+            handleOpenChange(openKeys){
+                const latestOpenKey = openKeys.find(key => this.defaultOpenKey.indexOf(key) === -1);
+                if(this.subMenu.indexOf(latestOpenKey)===-1){
+                    this.defaultOpenKey = openKeys
+                }else{
+                    this.defaultOpenKey = latestOpenKey ? [latestOpenKey] : [];
+                }
+            }
         },
         created(){
           this.initMenuParames()
-          console.log(this.roles);
         }
     }
 </script>
-
-<style lang="less" scoped>
-    .antd-admin-logo{
-        height: 64px;
-        padding: 16px;
-        width: 200px;
-        .logo{
-          background: rgba(255, 255, 255, 0.2);
-          height: 32px;
-        }
-    }
-</style>

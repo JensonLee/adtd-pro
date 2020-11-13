@@ -7,6 +7,7 @@ require('./modules/auth')
 require('./modules/audit')
 require('./modules/channel')
 require('./modules/fn')
+require('./modules/finance')
 require('./modules/business')
 
 

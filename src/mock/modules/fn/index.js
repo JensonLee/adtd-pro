@@ -46,7 +46,7 @@ const shoppingMallList = (opt)=>{
               businessName:'寿光宏宇化工有限公司',
               commodityId:'380',
               commodityName:'百事可乐1瓶',
-              commodityImg:Mock.mock('@image(200X100)'),
+              commodityImg:Mock.mock('@image(63X42)'),
               scoring:'80',
               addDate:'2020-10-01',
               status:'1'
@@ -55,7 +55,7 @@ const shoppingMallList = (opt)=>{
               businessName:'浙江省海翔药业',
               commodityId:'381',
               commodityName:'可口可乐1瓶',
-              commodityImg:Mock.mock('@image(200X100)'),
+              commodityImg:Mock.mock('@image(63X42)'),
               scoring:'90',
               addDate:'2020-10-01',
               status:'0'
@@ -76,7 +76,7 @@ const contestList = (opt) =>{
               contestId:'380',
               contestName:'蒸汽水锤的危害及控制',
               createDate:'2019-12-21',
-              contestImg:Mock.mock('@image(200X100)'),
+              contestImg:Mock.mock('@image(63X42)'),
               scoring:'80',
               startDate:'2020-10-01',
               endDate:'2020-11-12'
@@ -86,7 +86,7 @@ const contestList = (opt) =>{
               contestId:'381',
               contestName:'事故根源分析（基础篇）',
               createDate:'2019-12-21',
-              contestImg:Mock.mock('@image(200X100)'),
+              contestImg:Mock.mock('@image(63X42)'),
               scoring:'88',
               startDate:'2020-10-01',
               endDate:'2020-11-12'

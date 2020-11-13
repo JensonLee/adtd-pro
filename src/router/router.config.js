@@ -230,7 +230,7 @@ export const asyncRouterMap = [
               name:'documents',
               component:RouteView,
               redirect:'/documents/admin',
-              meta:{title:'资料管理',permission:['documentsAdmin'],icon:'container'},
+              meta:{title:'资料管理',permission:['documentsAdmin'],icon:'folder-open'},
               children:[
                 {
                   path:'/documents/class',
@@ -243,6 +243,84 @@ export const asyncRouterMap = [
                   name:'documents_admin',
                   component:()=>import('@/views/documents/documentsAdmin'),
                   meta:{title:'资料管理',permission:['documentsAdmin'],parentPath:'documents'}
+                }
+              ]
+            },
+            {
+              path:'/statistics',
+              name:'statistics',
+              component:RouteView,
+              redirect:'/statistics/collect',
+              meta:{title:'数据汇总',permission:['collectStatistics'],icon:'deployment-unit'},
+              children:[
+                {
+                  path:'/statistics/collect',
+                  name:'collect_statistics',
+                  component:()=>import('@/views/statistics/collect'),
+                  meta:{title:'数据汇总',permission:['collectStatistics'],parentPath:'statistics'}
+                },
+                {
+                  path:'/statistics/course',
+                  name:'course_statistics',
+                  component:()=>import('@/views/statistics/course'),
+                  meta:{title:'课程统计',permission:['courseStatistics'],parentPath:'statistics'}
+                },
+                {
+                  path:'/statistics/responsible_course',
+                  name:'responsible_course',
+                  component:()=>import('@/views/statistics/responsibleCourse'),
+                  meta:{title:'负责人课程统计',permission:['responsibleCourse'],parentPath:'statistics'}
+                },
+                {
+                  path:'/statistics/buy_course',
+                  name:'buy_course_statistics',
+                  component:()=>import('@/views/statistics/buyCourse'),
+                  meta:{title:'课程购买统计',permission:['buyCourseStatistics'],parentPath:'statistics'}
+                },
+                {
+                  path:'/statistics/online_students',
+                  name:'online_students_statistics',
+                  component:()=>import('@/views/statistics/onlineStudents'),
+                  meta:{title:'在线学员统计',permission:['onlineStudentsStatistics'],parentPath:'statistics'}
+                }
+              ]
+            },
+            {
+              path:'/system',
+              name:'system',
+              component:RouteView,
+              redirect:'/system/info',
+              meta:{title:'系统管理',permission:['systemInfo'],icon:'setting'},
+              children:[
+                {
+                  path:'/system/message_setting',
+                  name:'message_setting',
+                  component:()=>import('@/views/system/messageSetting'),
+                  meta:{title:'企业到期消息提醒设置',permission:['messageSettingSystem'],parentPath:'system'}
+                },
+                {
+                  path:'/system/IP_blacklist',
+                  name:'IP_blacklist',
+                  component:()=>import('@/views/system/IPBlacklist'),
+                  meta:{title:'IP黑名单',permission:['IPBlacklist'],parentPath:'system'}
+                },
+                {
+                  path:'/system/log',
+                  name:'system_log',
+                  component:()=>import('@/views/system/log'),
+                  meta:{title:'日志管理',permission:['systemLog'],parentPath:'system'}
+                },
+                {
+                  path:'/system/info',
+                  name:'system_info',
+                  component:()=>import('@/views/system/info'),
+                  meta:{title:"系统信息",permission:['systemInfo'],parentPath:'system'}
+                },
+                {
+                  path:'/system/certificate_edit',
+                  name:'certificate_edit',
+                  component:()=>import('@/views/system/certificateEdit'),
+                  meta:{title:'证书编辑',permission:['certificateEdit'],parentPath:'system'}
                 }
               ]
             }

@@ -10,6 +10,13 @@ import './config/action'
 import { VueAxios } from './util/request'
 Vue.config.productionTip = false
 
+import moment from 'moment'
+import 'moment/locale/zh-cn'
+
+moment.locale('zh-cn');
+
+Vue.prototype.$moment = moment
+
 import './mock'
 Vue.use(VueAxios)
 Vue.use(Antd)

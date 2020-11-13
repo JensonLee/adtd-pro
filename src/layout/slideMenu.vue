@@ -58,6 +58,7 @@ import {mapGetters} from 'vuex'
         },
         created(){
           this.initMenuParames()
+          console.log(this.roles);
         }
     }
 </script>

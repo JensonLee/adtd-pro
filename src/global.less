@@ -42,15 +42,26 @@ body,html,#app,#root{
 }
 .ant-layout-sider{
   overflow-x: hidden;
+  background: #ffffff;
   .ant-layout-sider-children{
     width: 232px;
-    overflow-y: auto;
-
+    overflow-y: hidden;
+    padding-top: 64px;
+    .antd-slide{
+      height:100%;
+      overflow: auto;
+    }
     .antd-admin-logo{
       height: 64px;
       padding: 16px;
       width: 200px;
-      border-bottom:1px solid rgba(255, 255, 255, 0.2);
+      -webkit-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+      -moz-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+      box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+      position: fixed;
+      z-index:9;
+      left: 0;
+      top:0;
       .logo{
         height: 32px;
         vertical-align: middle;
@@ -65,7 +76,7 @@ body,html,#app,#root{
         }
         .logo-title{
           font-size: 18px;
-          color: #ffffff;
+          color: #84c562;
           flex: 1;
         }
         .logo-title{

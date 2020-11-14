@@ -157,12 +157,15 @@ export default {
       // eslint-disable-next-line
       if ((typeof result === 'object' || typeof result === 'function') && typeof result.then === 'function') {
         result.then(r => {
-          this.localPagination = this.showPagination && Object.assign({}, this.localPagination, {
+            console.log(r);
+            this.localPagination = this.showPagination && Object.assign({}, this.localPagination, {
             current: r.pageNo, // 返回结果中的当前分页数
             total: r.totalCount, // 返回结果中的总记录数
             showSizeChanger: this.showSizeChanger,
             pageSize: (pagination && pagination.pageSize) ||
-              this.localPagination.pageSize
+              this.localPagination.pageSize,
+              showQuickJumper:true,
+              showTotal:(total,range)=>`共 ${total} 条记录 第 ${r.pageNo} / ${r.totalPage} 页`
           }) || false
           // 为防止删除数据后导致页面当前页面数据长度为 0 ,自动翻页到上一页
           if (r.data.length === 0 && this.showPagination && this.localPagination.current > 1) {
@@ -170,8 +173,8 @@ export default {
             this.loadData()
             return
           }
-
-          // 这里用于判断接口是否有返回 r.totalCount 且 this.showPagination = true 且 pageNo 和 pageSize 存在 且 totalCount 小于等于 pageNo * pageSize 的大小
+            console.log(this.localPagination);
+            // 这里用于判断接口是否有返回 r.totalCount 且 this.showPagination = true 且 pageNo 和 pageSize 存在 且 totalCount 小于等于 pageNo * pageSize 的大小
           // 当情况满足时，表示数据不满足分页大小，关闭 table 分页功能
           try {
             if ((['auto', true].includes(this.showPagination) && r.totalCount <= (r.pageNo * this.localPagination.pageSize))) {
@@ -300,7 +303,8 @@ export default {
       this[k] && (props[k] = this[k])
       return props[k]
     })
-    const table = (
+      console.log(props);
+      const table = (
       <a-table {...{ props, scopedSlots: { ...this.$scopedSlots } }} onChange={this.loadData} onExpand={ (expanded, record) => { this.$emit('expand', expanded, record) } }>
         { Object.keys(this.$slots).map(name => (<template slot={name}>{this.$slots[name]}</template>)) }
       </a-table>

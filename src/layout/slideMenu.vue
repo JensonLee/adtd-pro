@@ -6,27 +6,28 @@
               <span class="logo-title">瑞迈教育</span>
           </div>
         </div>
-        <a-menu 
-          theme="dark" 
-          mode="inline" 
-          :default-selected-keys="[defaultSelectMenu]"
-          :default-open-keys="defaultOpenKey"
-          >
-            <template v-for="item in menu">
-                <a-menu-item :key="item.name" v-if="!item.children">
-                    <router-link :to="item.path">
-                        <a-icon :type="item.meta.icon" />
-                        <span>{{item.meta.title}}</span>
-                    </router-link>
-                </a-menu-item>
-                <a-sub-menu :key="item.name" v-if="item.children && item.children.length>0">
-                    <span slot="title"><a-icon :type="item.meta.icon" /><span>{{item.meta.title}}</span></span>
-                    <a-menu-item :key="subItem.name" v-for="subItem in item.children">
-                        <router-link :to="subItem.path">{{subItem.meta.title}}</router-link>
+        <div class="antd-slide">
+            <a-menu
+              mode="inline"
+              :default-selected-keys="[defaultSelectMenu]"
+              :default-open-keys="defaultOpenKey"
+              >
+                <template v-for="item in menu">
+                    <a-menu-item :key="item.name" v-if="!item.children">
+                        <router-link :to="item.path">
+                            <a-icon :type="item.meta.icon" />
+                            <span>{{item.meta.title}}</span>
+                        </router-link>
                     </a-menu-item>
-                </a-sub-menu>
-            </template>
-        </a-menu>
+                    <a-sub-menu :key="item.name" v-if="item.children && item.children.length>0">
+                        <span slot="title"><a-icon :type="item.meta.icon" /><span>{{item.meta.title}}</span></span>
+                        <a-menu-item :key="subItem.name" v-for="subItem in item.children">
+                            <router-link :to="subItem.path">{{subItem.meta.title}}</router-link>
+                        </a-menu-item>
+                    </a-sub-menu>
+                </template>
+            </a-menu>
+        </div>
     </a-layout-sider>
 </template>
 <script>

@@ -21,6 +21,7 @@ router.beforeEach((to, from, next)=>{
     }else{
         if(store.getters.roleId ===""){
             store.dispatch("GetUserInfo").then(res=>{
+              console.log(res)
               const roles = res.result && res.result.role
               // const result = res.result
                 store.dispatch('GenerateRoutes',{roles}).then(()=>{

@@ -175,14 +175,50 @@ export const asyncRouterMap = [
                 {
                   path:'/subject_admin/head_of_subject',
                   name:'head_of_subject',
-                  component:()=>import('@/views/subject_admin/headOfSubject'),
-                  meta:{title:'课程负责人',permission:['headOfSubject'],parentPath:'subject_admin'}
+                  component:RouteView,
+                  meta:{title:'课程负责人',permission:['headOfSubject'],parentPath:'subject_admin'},
+                  redirect:'/subject_admin/head_of_subject/responsible',
+                  children:[
+                    {
+                      path:'/subject_admin/head_of_subject/responsible',
+                      name:'head_of_subject_responsible',
+                      component:()=>import('@/views/subject_admin/headOfSubject'),
+                      meta:{title:'课程负责人',permission:['headOfSubject'],parentPath:'subject_admin'}
+                    },
+                    {
+                      path:"/subject_admin/head_of_subject/responsible/course",
+                      name:'head_of_subject_course',
+                      component:()=>import('@/views/subject_admin/components/course'),
+                      meta:{title:'负责课程',permission:['headOfSubject'],parentPath:'subject_admin'}
+                    }
+                  ]
                 },
                 {
                   path:'/subject_admin/upload',
-                  name:'uploadEdit',
-                  component:()=>import('@/views/subject_admin/upload'),
-                  meta:{title:'上传编辑',permission:['uploadEdit'],parentPath:'subject_admin'}
+                  name:'uploadSuject',
+                  component:RouteView,
+                  redirect:'/subject_admin/upload/list',
+                  meta:{title:'上传编辑',permission:['uploadEdit'],parentPath:'subject_admin'},
+                  children:[
+                    {
+                      path:'/subject_admin/upload/list',
+                      name:'uploadList',
+                      component:()=>import('@/views/subject_admin/upload'),
+                      meta:{title:'上传编辑',permission:['uploadEdit'],parentPath:'subject_admin'}
+                    },
+                    {
+                      path:'/subject_admin/upload/list/preview',
+                      name:'coursePreview',
+                      component:()=>import('@/views/subject_admin/components/preview'),
+                      meta:{title:'预览',permission:['uploadEdit'],parentPath:'subject_admin'}
+                    },
+                    {
+                      path:'/subject_admin/upload/list/create',
+                      name:'courseCreated',
+                      component:()=>import('@/views/subject_admin/components/createCourse'),
+                      meta:{title:'新建',permission:['uploadEdit'],parentPath:'subject_admin'}
+                    }
+                  ]
                 }
               ]
             },

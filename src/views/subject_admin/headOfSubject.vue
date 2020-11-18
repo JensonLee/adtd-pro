@@ -17,7 +17,7 @@
     </div>
 
     <div class="tool-tip">
-      <a-button type="primary">新建</a-button>
+      <a-button type="primary" @click="handleAdd">新建</a-button>
       <a-button type="primary">导出</a-button>
     </div>
 
@@ -29,13 +29,28 @@
               :columns='columns'
               :data="loadData"
       >
-        <template slot="action">
-          <a href="javascript:void" class="table-operation-action">详情</a>
-          <a href="javascript:void" class="table-operation-action">编辑</a>
-          <a href="javascript:void" class="table-operation-action">删除</a>
-          <router-link to="" class="table-operation-action">负责课程</router-link>
+        <template slot="action" slot-scope="text,record">
+          <a href="javascript:void(0)" class="table-operation-action" @click="handleDetail(record)">详情</a>
+          <a href="javascript:void(0)" class="table-operation-action">编辑</a>
+          <a-popconfirm
+            title="确定删除此负责人么？"
+            ok-text="确定"
+            cancel-text="取消"
+            placement="left"
+            @confirm="handleDelete"
+          >
+            <a href="javascript:void(0)" class="table-operation-action">删除</a>
+          </a-popconfirm>
+          <router-link :to="{path:'/subject_admin/head_of_subject/responsible/course',query:{responsibleId:record.id}}" class="table-operation-action">负责课程</router-link>
         </template>
       </s-table>
+      <create-responsible
+        :visible="visible"
+        :confirmLoading="confirmLoading"
+        :model="model"
+        @ok="handleOk"
+        @cancel="handleCancel"
+      ></create-responsible>
     </div>
   </div>
 </template>
@@ -43,6 +58,7 @@
 <script>
 import STable from '@/components/Table'
 import {courseResponsible} from '@/api/course'
+import CreateResponsible from './modules/createResponsible'
 const columns = [
   {
     title:"账号",
@@ -59,7 +75,8 @@ const columns = [
   },{
     title:'操作',
     dataIndex:'action',
-    scopedSlots:{customRender:'action'}
+    scopedSlots:{customRender:'action'},
+    width:'220px'
   }
 ]
 export default {
@@ -71,11 +88,36 @@ export default {
         return courseResponsible(Object(parameter,this.queryParams)).then(res=>{
           return res.result
         })
-      }
+      },
+      visible:false,
+      confirmLoading:false,
+      model:null
     }
   },
   components:{
-    STable
+    STable,
+    CreateResponsible
+  },
+  created(){
+  },
+  methods:{
+    handleAdd(){
+      this.visible = true
+      this.model=null
+    },
+    handleOk(){
+      this.visible=false
+    },
+    handleCancel(){
+      this.visible=false
+    },
+    handleDetail(record){
+      this.visible=true
+      this.model = record
+    },
+    handleDelete(){
+      this.$message.success('成功删除此数据')
+    }
   }
 }
 </script>

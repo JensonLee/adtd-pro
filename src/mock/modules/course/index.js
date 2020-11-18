@@ -28,4 +28,57 @@ const headOfCourse = (opt)=>{
   })
 }
 
+const courseList = (opt)=>{
+  const body = getBody(opt);
+  const list = [];
+  for (let i = 0; i < body.pageSize; i++){
+    const item = {
+      id:"SK-"+(i+1),
+      courseName:'静电危害与控制',
+      field:"安全",
+      tradesClass:'化工',
+      courseClass:'职业教育'
+    };
+    list.push(item)
+  }
+
+  return builder({
+    pageSize:body.pageSize,
+    pageNo:body.pageNo,
+    totalCount:20,
+    totalPage:2,
+    data:list
+  })
+}
+
+const uploadCourseList = (opt) => {
+  const body = getBody(opt)
+  const list = []
+  for(let i =0;i<body.pageSize;i++){
+    list.push({
+      id:Mock.mock('@id'),
+      courseId:'SK-'+(i+1),
+      couseName:"静电危害与控制",
+      img:Mock.mock('@image(63X42)'),
+      field:"安全",
+      tradesClass:'化工',
+      courseType:'视频',
+      courseClass:"通用课程",
+      responsible:Mock.mock('@cname'),
+      createDate:Mock.mock('@date'),
+    })
+  }
+  return builder({
+    pageSize:body.pageSize,
+    pageNo:body.pageNo,
+    totalCount:20,
+    totalPage:2,
+    data:list
+  })
+}
+
 Mock.mock('/course/responsible','get',headOfCourse)
+
+Mock.mock('/couse/responsible/course','get',courseList)
+
+Mock.mock('/course/upload/list','get',uploadCourseList)

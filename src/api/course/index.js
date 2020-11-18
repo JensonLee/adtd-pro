@@ -7,3 +7,18 @@ export function courseResponsible(parames){
         data:parames
     })
 }
+
+export function getCourse(params){
+  return request({
+    url:"/couse/responsible/course",
+    method:"get",
+    data:params
+  })
+}
+export function uploadCourseList(params){
+  return request({
+    url:"/course/upload/list",
+    method:"get",
+    data:params
+  })
+}

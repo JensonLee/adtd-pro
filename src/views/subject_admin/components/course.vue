@@ -46,84 +46,55 @@
             </a-row>
         </a-form>
     </div>
-    <div class="tool-tip">
-      <router-link class="ant-btn ant-btn-primary" :to="{path:'/subject_admin/upload/list/create'}">新建</router-link>
-    </div>
     <div class="antd-table-wrap">
       <s-table
         ref="table"
         size="default"
-        rowKey="id"
-        :columns='columns'
+        rowKey='id'
+        :columns="columns"
         :data="loadData"
-        :scroll="{ x: 1500 }"
-        >
-        <template slot="img" slot-scope="text,record">
-          <img :src="record.img" alt="">
-        </template>
-        <template slot="action" slot-scope="text,record">
-          <router-link :to="{path:'/subject_admin/upload/list/preview',query:{courseId:record.id}}" class="table-operation-action">预览</router-link>
-          <router-link to="" class="table-operation-action">上传</router-link>
-          <router-link to="" class="table-operation-action">编辑</router-link>
-          <router-link to="" class="table-operation-action">删除</router-link>
-          <router-link to="" class="table-operation-action">考题管理</router-link>
-        </template>
-        </s-table>
+      >
+      </s-table>
     </div>
   </div>
 </template>
 
+
 <script>
 import STable from '@/components/Table'
-import {uploadCourseList} from '@/api/course'
+import {getCourse} from '@/api/course'
 
-const columns=[
+const columns = [
   {
-    title:'课程ID',
+    title:"课程编号",
     dataIndex:'id'
-  },{
-    title:'课程编号',
-    dataIndex:'courseId'
-  },{
-    title:'课程编号',
-    dataIndex:'couseName'
-  },{
-    title:'封面图',
-    dataIndex:'img',
-    scopedSlots:{customRender:"img"}
-  },{
-    title:'所属领域',
+  },
+  {
+    title:"课程名称",
+    dataIndex:'courseName'
+  },
+  {
+    title:"所属领域",
     dataIndex:'field'
-  },{
-    title:'行业类别',
+  },
+  {
+    title:"行业类别",
     dataIndex:'tradesClass'
-  },{
-    title:'课程类型',
-    dataIndex:'courseType'
-  },{
-    title:'课程分类',
+  },
+  {
+    title:"课程分类",
     dataIndex:'courseClass'
-  },{
-    title:'负责人',
-    dataIndex:'responsible'
-  },{
-    title:'创建时间',
-    dataIndex:'createDate'
-  },{
-    title:'操作',
-    dataIndex:'action',
-    scopedSlots:{customRender:"action"},
-    width:"260px",
-    fixed: 'right'
   }
 ]
 export default {
   data(){
     return{
       columns,
-      queryParams:{},
-      loadData:parameter =>{
-        return uploadCourseList(Object(parameter,this.queryParams)).then(res=>{
+      queryParams:{
+        responsibleId:this.$route.query.responsibleId
+      },
+      loadData: parameter => {
+        return getCourse(Object(parameter,this.queryParams)).then(res=>{
           return res.result
         })
       }

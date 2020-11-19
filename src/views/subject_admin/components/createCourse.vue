@@ -84,7 +84,7 @@
         <a-button type="primary" @click="onSubmit">
           创建
         </a-button>
-        <a-button style="margin-left: 10px;" @click="resetForm">
+        <a-button style="margin-left: 10px;" @click="cancel">
           取消
         </a-button>
       </a-form-model-item>
@@ -127,7 +127,9 @@ export default {
         }
       });
     },
-    resetForm(){}
+    cancel(){
+      this.$router.back()
+    }
   }
 }
 </script>

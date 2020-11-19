@@ -9,6 +9,8 @@ require('./modules/channel')
 require('./modules/fn')
 require('./modules/finance')
 require('./modules/course')
+require('./modules/content')
+require('./modules/documents')
 require('./modules/business')
 
 

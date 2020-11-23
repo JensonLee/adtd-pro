@@ -9,7 +9,7 @@ import './global.less'
 import './config/action'
 import { VueAxios } from './util/request'
 Vue.config.productionTip = false
-
+import VCharts from 'v-charts'
 import moment from 'moment'
 import 'moment/locale/zh-cn'
 
@@ -20,7 +20,7 @@ Vue.prototype.$moment = moment
 import './mock'
 Vue.use(VueAxios)
 Vue.use(Antd)
-
+Vue.use(VCharts)
 new Vue({
   router,
   store,

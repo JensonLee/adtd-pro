@@ -24,7 +24,7 @@
     </a-row>
     <a-row class="antd-panel">
       <a-col :span="18">
-        
+        <ve-map :data="chartData" :settings="chartSettings"></ve-map>
       </a-col>
       <a-col :span="6">
         2
@@ -34,29 +34,44 @@
 </template>
 
 <script>
-    const barData = []
-    const barData2 = []
-    for (let i = 0; i < 12; i += 1) {
-        barData.push({
-            x: `${i + 1}月`,
-            y: Math.floor(Math.random() * 1000) + 200
-        })
-        barData2.push({
-            x: `${i + 1}月`,
-            y: Math.floor(Math.random() * 1000) + 200
-        })
-    }
+  import China from 'echarts/map/json/china.json'
   export default {
-      data(){
-          return {
-              onlinePerson:112893,
-              courseBuy:2331,
-              businessNum:892,
-              scrollNum:910,
-              barData2
+    data(){
+      this.chartSettings = {
+        mapOrigin: China,
+        position: 'china',
+        dimension: '位置',
+        label:false,
+        metrics: ['用户数量'],
+        dataType: {
+          '面积': 'KMB'
+        },
+        mapGrid:{
+          left: "auto",
+          right: "24px",
+          top: "auto",
+          bottom: "auto"
+        }
+      }
+      return {
+          onlinePerson:112893,
+          courseBuy:2331,
+          businessNum:892,
+          scrollNum:910,
+          chartData: {
+            columns: ['位置', '用户数量'],
+            rows: [
+              { '位置': '吉林', '用户数量': 123 },
+              { '位置': '北京', '用户数量': 1223},
+              { '位置': '上海', '用户数量': 2123},
+              { '位置': '浙江', '用户数量': 4123}
+            ]
           }
-      },
-
+      }
+    },
+    created(){
+      console.log(this.chartData);
+    }
   }
 </script>
 

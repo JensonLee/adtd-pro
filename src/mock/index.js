@@ -11,6 +11,7 @@ require('./modules/finance')
 require('./modules/course')
 require('./modules/content')
 require('./modules/documents')
+require('./modules/statistics')
 require('./modules/business')
 
 

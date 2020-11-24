@@ -6,17 +6,10 @@ import {builder, getBody} from '../../util'
  * @param {*} opt 
  */
 const collectViews = (opt) =>{
-  const body = getBody(opt)
-  const list = []
-
-  const totalCount  = Math.floor(Math.random()*(100-20+1)+20)
-  const totalPage = Math.ceil(totalCount/body.pageSize);
   return builder({
-    pageSize:body.pageSize,
-    pageNo:body.pageNo,
-    totalCount:totalCount,
-    totalPage:totalPage,
-    data:list
+    businessCount:parseInt(Math.random()*(500-100)+100) ,
+    validBusinessCount:parseInt(Math.random()*(100-20)+20),
+    registerCount:parseInt(Math.random()*(100000-10000)+10000)
   }) 
 }
 

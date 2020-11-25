@@ -17,7 +17,7 @@ moment.locale('zh-cn');
 
 Vue.prototype.$moment = moment
 
-import './mock'
+// import './mock'
 Vue.use(VueAxios)
 Vue.use(Antd)
 Vue.use(VCharts)

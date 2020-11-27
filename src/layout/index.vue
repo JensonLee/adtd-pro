@@ -1,5 +1,5 @@
 <template>
-  <a-layout id="components-layout-demo-custom-trigger" class="admin-wrap">
+  <a-layout class="admin-wrap">
     <slide-menu :collapsed="collapsed" :menu="slideMenuNav"></slide-menu>
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
@@ -36,7 +36,9 @@
         </a-breadcrumb>
       </div>
       <a-layout-content>
-        <router-view/>
+        <div class="antd-admin-page">
+          <router-view/>
+        </div>
       </a-layout-content>
     </a-layout>
   </a-layout>

@@ -41,8 +41,7 @@ const info = ()=>{
         'actions': '[{"action":"add","defaultCheck":false,"describe":"新增"},{"action":"query","defaultCheck":false,"describe":"查询"},{"action":"get","defaultCheck":false,"describe":"详情"},{"action":"update","defaultCheck":false,"describe":"修改"},{"action":"delete","defaultCheck":false,"describe":"删除"}]',
         'actionEntitySet': [{
           'action': 'query',
-          'describe': '查询',
-          'defaultCheck': false
+          'describe': '查询'
         }],
         'actionList': null,
         'dataAccess': null

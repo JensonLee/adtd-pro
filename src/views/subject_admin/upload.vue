@@ -123,7 +123,9 @@ export default {
       columns,
       queryParams:{},
       loadData:parameter =>{
-        return uploadCourseList(Object(parameter,this.queryParams)).then(res=>{
+        const pageaction = this.$route.params.pageaction || parameter
+        console.log(this.$route.params)
+        return uploadCourseList(Object(pageaction,this.queryParams)).then(res=>{
           return res.result
         })
       }

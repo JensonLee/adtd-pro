@@ -4,6 +4,8 @@ import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.less'
 import router from './router'
 import store from './store'
+import 'babel-polyfill'
+import 'core-js'
 import './permission'
 import './global.less'
 import './config/action'
@@ -17,7 +19,7 @@ moment.locale('zh-cn');
 
 Vue.prototype.$moment = moment
 
-// import './mock'
+import './mock'
 Vue.use(VueAxios)
 Vue.use(Antd)
 Vue.use(VCharts)

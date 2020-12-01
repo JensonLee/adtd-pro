@@ -21,7 +21,7 @@
       </a-form>
     </div>
     <div class="tool-tip">
-      <!-- <a-button type="primary" v-action:add>新建</a-button> -->
+      <a-button type="primary" @click="handleAdd" v-action:add>新建</a-button>
     </div>
     <div>
       <s-table
@@ -30,14 +30,37 @@
         rowKey="id"
         :data="loadData"
         :columns="columns"
-      ></s-table>
+      >
+        <template slot="action" slot-scope="text,record">
+          <a href="javascript:void(0)" class="table-operation-action" @click="handleEdit(record)">编辑</a>
+          <a-popconfirm
+            title="确定删除此文章么？"
+            ok-text="确定"
+            cancel-text="取消"
+            placement="topLeft"
+            @confirm="handleDelete(record)"
+          >
+            <a href="javascript:void(0)" class="table-operation-action">删除</a>
+          </a-popconfirm>
+          <a href="javascript:void(0)" class="table-operation-action" @click="handleEdit">设置角色</a>
+        </template>
+      </s-table>
     </div>
+    <s-form 
+      ref="form" 
+      :visible="visible" 
+      :confirmLoading="confirmLoading"
+      :dataModel="dataModel"
+      @ok="handleOk"
+      @cancel="handleCancel"
+    ></s-form>
   </div>
 </template>
 
 <script>
 import {STable} from '@/components'
 import { getUserList } from '@/api/auth'
+import SForm from './modules/form'
 
 const columns = [
   {
@@ -63,7 +86,8 @@ const columns = [
   {
     title:'更新时间',
     dataIndex:'uploadDate'
-  }
+  },
+  {title:"操作",dataIndex:"action",scopedSlots:{customRender:"action"},width:"180px"}
 ]
 export default {
   data(){
@@ -77,11 +101,80 @@ export default {
             console.log(res)
             return res.result
           })
-      }
+      },
+      visible:false,
+      confirmLoading:false,
+      dataModel:null
     }
   },
   components:{
-    STable
+    STable,
+    SForm
+  },
+  methods:{
+    handleAdd(){
+      this.visible=true
+      this.dataModel=null
+    },
+    handleOk(){
+      const form = this.$refs.form.form
+      this.confirmLoading = true
+      form.validateFields((errors, values)=>{
+        if(!errors){
+          console.log('values', values)
+          if(values.id && values.id>0){
+            /**
+             * 这里ID判断是否存在，存在说明是修改，在这里编写修改的接口，在if里面操作，这里模拟了一个异步
+             */
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                resolve()
+              }, 1000)
+            }).then(res=>{
+              this.visible = false
+              this.confirmLoading = false
+              // 重置表单数据
+              form.resetFields()
+              // 刷新表格
+              this.$refs.table.refresh()
+            })
+          }else{
+            /**
+             * 这里没有ID说明是新建用户，新建用户的接口操作在这完成
+             */
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                resolve()
+              }, 1000)
+            }).then(res=>{
+              this.visible = false
+              this.confirmLoading = false
+              // 重置表单数据
+              form.resetFields()
+              // 刷新表格
+              this.$refs.table.refresh()
+            })
+          }
+        }else{
+          this.confirmLoading = false
+        }
+      })
+    },
+    handleCancel(){
+      this.visible = false
+      const form = this.$refs.form.form
+      form.resetFields() // 清理表单数据（可不做）
+    },
+    handleDelete(record){
+      /**
+       * 这里是删除接口操作,record是这行数据
+       */
+      this.$message.info(JSON.stringify(record))
+    },
+    handleEdit(record){
+      this.visible=true
+      this.dataModel = {...record}
+    }
   }
 }
 </script>

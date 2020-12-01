@@ -35,7 +35,7 @@ export const asyncRouterMap = [
                   path:'/auth/user',
                   name:'user',
                   component:()=>import('@/views/auth/user'),
-                  meta:{title:'用户管理',permission:['auth'],parentPath:'auth'}
+                  meta:{title:'用户管理',permission:['user'],parentPath:'auth'}
                 }
               ]
             },
@@ -196,16 +196,9 @@ export const asyncRouterMap = [
                 {
                   path:'/subject_admin/upload',
                   name:'uploadSuject',
-                  component:RouteView,
-                  redirect:'/subject_admin/upload/list',
+                  component:()=>import('@/views/subject_admin/upload'),
                   meta:{title:'上传编辑',permission:['uploadEdit'],parentPath:'subject_admin'},
                   children:[
-                    {
-                      path:'/subject_admin/upload/list',
-                      name:'uploadList',
-                      component:()=>import('@/views/subject_admin/upload'),
-                      meta:{title:'上传编辑',permission:['uploadEdit'],parentPath:'subject_admin'}
-                    },
                     {
                       path:'/subject_admin/upload/list/preview',
                       name:'coursePreview',

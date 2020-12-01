@@ -30,9 +30,54 @@ const roleList = (opt)=>{
 const userList = (opt)=>{
   const userList = [
     {
-      id:1,
-      userName:'@cname',
-      email:'@email',
+      id:Mock.mock('@integer'),
+      userName:Mock.mock('@cname'),
+      email:Mock.mock('@email'),
+      phoneNo:'138292929192',
+      roleId:'管理员',
+      createDate:'2019.09.18',
+      uploadDate:'2020.01.29'
+    },
+    {
+      id:Mock.mock('@integer'),
+      userName:Mock.mock('@cname'),
+      email:Mock.mock('@email'),
+      phoneNo:'138292929192',
+      roleId:'管理员',
+      createDate:'2019.09.18',
+      uploadDate:'2020.01.29'
+    },
+    {
+      id:Mock.mock('@integer'),
+      userName:Mock.mock('@cname'),
+      email:Mock.mock('@email'),
+      phoneNo:'138292929192',
+      roleId:'管理员',
+      createDate:'2019.09.18',
+      uploadDate:'2020.01.29'
+    },
+    {
+      id:Mock.mock('@integer'),
+      userName:Mock.mock('@cname'),
+      email:Mock.mock('@email'),
+      phoneNo:'138292929192',
+      roleId:'管理员',
+      createDate:'2019.09.18',
+      uploadDate:'2020.01.29'
+    },
+    {
+      id:Mock.mock('@integer'),
+      userName:Mock.mock('@cname'),
+      email:Mock.mock('@email'),
+      phoneNo:'138292929192',
+      roleId:'管理员',
+      createDate:'2019.09.18',
+      uploadDate:'2020.01.29'
+    },
+    {
+      id:Mock.mock('@integer'),
+      userName:Mock.mock('@cname'),
+      email:Mock.mock('@email'),
       phoneNo:'138292929192',
       roleId:'管理员',
       createDate:'2019.09.18',

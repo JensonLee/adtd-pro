@@ -3,6 +3,20 @@ body,html,#app,#root{
   height:100%;
   .admin-wrap{
     height:100%;
+    .antd-admin-page,.antd-page-content{
+      height: 100%;
+      overflow: auto;
+      position: relative;
+      .antd-page{
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+        z-index: 9;
+      }
+    }
   }
 }
 .antd-panel{

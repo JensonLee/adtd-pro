@@ -1,4 +1,5 @@
 <template>
+  <div class="antd-page">
   <div class="antd-panel">
     <a-form-model
       ref="createCourse"
@@ -89,6 +90,7 @@
         </a-button>
       </a-form-model-item>
     </a-form-model>
+  </div>
   </div>
 </template>
 

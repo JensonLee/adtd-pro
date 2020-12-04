@@ -51,7 +51,8 @@
     "rules": {
       "no-unused-vars": "off",
       "template-curly-spacing": "off",
-      "indent": "off"
+      "indent": "off",
+      "vue/no-unused-components": "off"
     }
   },
   "browserslist": [

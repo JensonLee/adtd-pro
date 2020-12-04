@@ -15,6 +15,7 @@ body,html,#app,#root{
         width: 100%;
         overflow: auto;
         z-index: 9;
+        background-color: #ffffff;
       }
     }
   }
@@ -25,6 +26,16 @@ body,html,#app,#root{
   margin-bottom: 12px;
   &:last-child{
     margin-bottom: 0;
+  }
+}
+
+.ant-timeline-item-content {
+  .ant-timeline-item-child{
+    padding: 8px 0 8px 12px;
+    
+    .current-chapters{
+      color: rgb(255, 85, 0);
+    }
   }
 }
 

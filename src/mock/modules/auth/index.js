@@ -36,7 +36,10 @@ const userList = (opt)=>{
       phoneNo:'138292929192',
       roleId:'管理员',
       createDate:'2019.09.18',
-      uploadDate:'2020.01.29'
+      uploadDate:'2020.01.29',
+      roleList:[
+        '1','2'
+      ]
     },
     {
       id:Mock.mock('@integer'),
@@ -45,7 +48,10 @@ const userList = (opt)=>{
       phoneNo:'138292929192',
       roleId:'管理员',
       createDate:'2019.09.18',
-      uploadDate:'2020.01.29'
+      uploadDate:'2020.01.29',
+      roleList:[
+        '1','2'
+      ]
     },
     {
       id:Mock.mock('@integer'),
@@ -54,7 +60,10 @@ const userList = (opt)=>{
       phoneNo:'138292929192',
       roleId:'管理员',
       createDate:'2019.09.18',
-      uploadDate:'2020.01.29'
+      uploadDate:'2020.01.29',
+      roleList:[
+        '1','2'
+      ]
     },
     {
       id:Mock.mock('@integer'),
@@ -63,7 +72,10 @@ const userList = (opt)=>{
       phoneNo:'138292929192',
       roleId:'管理员',
       createDate:'2019.09.18',
-      uploadDate:'2020.01.29'
+      uploadDate:'2020.01.29',
+      roleList:[
+        '1','2'
+      ]
     },
     {
       id:Mock.mock('@integer'),
@@ -72,7 +84,10 @@ const userList = (opt)=>{
       phoneNo:'138292929192',
       roleId:'管理员',
       createDate:'2019.09.18',
-      uploadDate:'2020.01.29'
+      uploadDate:'2020.01.29',
+      roleList:[
+        '1','2'
+      ]
     },
     {
       id:Mock.mock('@integer'),
@@ -81,7 +96,10 @@ const userList = (opt)=>{
       phoneNo:'138292929192',
       roleId:'管理员',
       createDate:'2019.09.18',
-      uploadDate:'2020.01.29'
+      uploadDate:'2020.01.29',
+      roleList:[
+        '1','2'
+      ]
     }
   ]
   return builder({

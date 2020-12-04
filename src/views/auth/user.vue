@@ -42,7 +42,7 @@
           >
             <a href="javascript:void(0)" class="table-operation-action">删除</a>
           </a-popconfirm>
-          <a href="javascript:void(0)" class="table-operation-action" @click="handleEdit">设置角色</a>
+          <a href="javascript:void(0)" class="table-operation-action" @click="handleSetRole(record.roleList)">设置角色</a>
         </template>
       </s-table>
     </div>
@@ -54,6 +54,14 @@
       @ok="handleOk"
       @cancel="handleCancel"
     ></s-form>
+    <s-set-role
+      ref="setRole"
+      :visible="setRoleVisible"
+      :confirmLoading="setRoleConfirmLoading"
+      :dataModel="setRoleDateModel"
+      @ok="handleOkSetRole"
+      @cancel="handleCancelSetRole"
+    ></s-set-role>
   </div>
 </template>
 
@@ -61,6 +69,7 @@
 import {STable} from '@/components'
 import { getUserList } from '@/api/auth'
 import SForm from './modules/form'
+import SSetRole from './modules/setRole'
 
 const columns = [
   {
@@ -104,12 +113,16 @@ export default {
       },
       visible:false,
       confirmLoading:false,
-      dataModel:null
+      dataModel:null,
+      setRoleVisible:false,
+      setRoleConfirmLoading:false,
+      setRoleDateModel:null
     }
   },
   components:{
     STable,
-    SForm
+    SForm,
+    SSetRole
   },
   methods:{
     handleAdd(){
@@ -121,7 +134,6 @@ export default {
       this.confirmLoading = true
       form.validateFields((errors, values)=>{
         if(!errors){
-          console.log('values', values)
           if(values.id && values.id>0){
             /**
              * 这里ID判断是否存在，存在说明是修改，在这里编写修改的接口，在if里面操作，这里模拟了一个异步
@@ -160,10 +172,28 @@ export default {
         }
       })
     },
+    handleOkSetRole(){
+      const form = this.$refs.setRole.form
+      this.setRoleConfirmLoading = true
+      form.validateFields((error,values)=>{
+        if(!error){
+          console.log(values)
+          this.setRoleConfirmLoading=false
+        }else{
+          this.setRoleConfirmLoading=false
+        }
+      })
+
+    },
     handleCancel(){
       this.visible = false
       const form = this.$refs.form.form
       form.resetFields() // 清理表单数据（可不做）
+    },
+    handleCancelSetRole(){
+      this.setRoleVisible =false
+      const setForm = this.$refs.setRole.form
+      setForm.resetFields()
     },
     handleDelete(record){
       /**
@@ -174,6 +204,10 @@ export default {
     handleEdit(record){
       this.visible=true
       this.dataModel = {...record}
+    },
+    handleSetRole(roleList){
+      this.setRoleVisible =true
+      this.setRoleDateModel = {roleList:roleList}
     }
   }
 }

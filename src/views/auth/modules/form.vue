@@ -64,6 +64,7 @@ export default {
 
     // 当 dataModel 发生改变时，为表单设置值
     this.$watch('dataModel', () => {
+      console.log(this.dataModel)
       this.dataModel && this.form.setFieldsValue(pick(this.dataModel, fields))
     })
   }

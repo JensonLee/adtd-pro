@@ -2,6 +2,7 @@ import Mock from 'mockjs'
 import { builder,getBody } from '../../util'
 
 const roleList = (opt)=>{
+  console.log(opt);
   const role = [
     {
       id:1,

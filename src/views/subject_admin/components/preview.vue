@@ -4,10 +4,10 @@
     <div class="antd-panel">
       <a-tabs>
         <a-tab-pane key="1" tab="课程内容">
-            <course-content />
+          <course-content />
         </a-tab-pane>
         <a-tab-pane key="2" tab="考题列表">
-          2222
+          <exam-paper />
         </a-tab-pane>
       </a-tabs>
     </div>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import ExamPaper from '../modules/examPaper.vue'
 import CourseContent from './../modules/courseContent'
 
 export default {
@@ -24,7 +25,11 @@ export default {
     }
   },
   components:{
-    CourseContent
+    CourseContent,
+    ExamPaper
+  },
+  created(){
+    console.log(ExamPaper)
   }
 }
 </script>

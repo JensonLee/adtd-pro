@@ -70,7 +70,7 @@
       }
     },
     created(){
-      console.log(this.chartData);
+      // console.log(this.chartData);
     }
   }
 </script>

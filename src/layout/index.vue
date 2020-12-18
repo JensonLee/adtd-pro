@@ -4,9 +4,9 @@
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
         <a-icon
-          class="trigger"
-          :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-          @click="toggleCollapsed"
+            class="trigger"
+            :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+            @click="toggleCollapsed"
         />
         <div class="antd-header-right">
           <span class="antd-notification-header">
@@ -45,36 +45,38 @@
 </template>
 
 <script>
-  import SlideMenu from "./slideMenu.vue"
-  import {mapGetters,mapActions} from 'vuex'
+import SlideMenu from "./slideMenu.vue"
+import {mapGetters,mapActions} from 'vuex'
 export default {
-    data() {
-        return {
-            collapsed: false,
-            slideMenuNav:[],
-            notificationCount:0
-        };
+  data() {
+    return {
+      collapsed: false,
+      slideMenuNav:[],
+      notificationCount:0
+    };
+  },
+  components:{
+    SlideMenu
+  },
+  computed:{
+    ...mapGetters(['addRouter','userName'])
+  },
+  methods:{
+    ...mapActions(['Logout']),
+    handleLogout(){
+      this.Logout().then(()=>{
+        this.$nextTick(()=>{
+          this.$router.push({path:'/login'})
+        })
+      })
     },
-    components:{
-        SlideMenu
-    },
-    computed:{
-        ...mapGetters(['addRouter','userName'])
-    },
-    methods:{
-        ...mapActions(['Logout']),
-        handleLogout(){
-            this.Logout().then(()=>{
-                this.$router.push({path:'/login'})
-            })
-        },
-        toggleCollapsed(){
-            this.collapsed = !this.collapsed
-        }
-    },
-    created(){
-        this.slideMenuNav = this.addRouter[0].children
+    toggleCollapsed(){
+      this.collapsed = !this.collapsed
     }
+  },
+  created(){
+    this.slideMenuNav = this.addRouter[0].children
+  }
 
 };
 </script>

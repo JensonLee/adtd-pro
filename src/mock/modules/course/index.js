@@ -22,7 +22,7 @@ const headOfCourse = (opt)=>{
   return builder({
     pageSize:body.pageSize,
     pageNo:body.pageNo,
-    totalCount:20,
+    totalCount:30,
     totalPage:2,
     data:list
   })

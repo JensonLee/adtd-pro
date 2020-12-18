@@ -10,7 +10,7 @@
           </a-col>
           <a-col :md="8" :sm="24">
             <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
-            <a-button style="margin-left: 8px" >重置</a-button>
+            <a-button style="margin-left: 8px" @click="handleReset">重置</a-button>
           </a-col>
         </a-row>
       </a-form>
@@ -65,10 +65,12 @@ const columns = [
     dataIndex:'username'
   },{
     title:"姓名",
-    dataIndex:'cname'
+    dataIndex:'cname',
+    sorter: true
   },{
     title:'性别',
-    dataIndex:'gender'
+    dataIndex:'gender',
+    sorter: true
   },{
     title:'手机号',
     dataIndex:'phoneNo'
@@ -85,6 +87,7 @@ export default {
       columns,
       queryParams:{},
       loadData:parameter =>{
+        console.log(parameter)
         return courseResponsible(Object(parameter,this.queryParams)).then(res=>{
           return res.result
         })
@@ -117,6 +120,10 @@ export default {
     },
     handleDelete(){
       this.$message.success('成功删除此数据')
+    },
+    handleReset(){
+      this.queryParams={}
+      this.$refs.table.refresh(true)
     }
   }
 }

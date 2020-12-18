@@ -70,8 +70,8 @@ export default {
         if (!err) {
           console.log('Received values of form: ', values);
           this.Login(values).then(res=>{
-              console.log(res);
               this.$router.push({ path: '/' })
+              window.location.reload()
           })
         }
         

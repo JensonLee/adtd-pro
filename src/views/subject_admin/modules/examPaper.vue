@@ -1,5 +1,20 @@
 <template>
-  
+  <div>
+    <a-form :form="form">
+      <a-form-item label="菜单">
+        <a-select v-decorator="[
+          'type',
+          { 
+            initialValue: '1',
+            rules:[{ required: true, message: 'Please select your favourite colors!' }]
+          }
+        ]">
+          <a-select-option value="1">kkkkk</a-select-option>
+          <a-select-option value="2">bbbbbb</a-select-option>
+        </a-select>
+      </a-form-item>
+    </a-form>
+  </div>
 </template>
 
 <script>
@@ -7,6 +22,11 @@
  * 试卷列表：
  *  subjectProblem：题目问题
  *  subjectType：题目类型  0-单选   1-多选
+ *  rightKey : 正确答案
+ *  describe  ：  答案说明、答题解析
+ *  subjectId ：  题目ID、唯一标识
+ *  subjectOption ：  题目选项、数组[{optionValue:'选项标识',optionDescribe:'选项详细'}]
+ *  
  */
 const examPaperList = [
   {
@@ -37,6 +57,12 @@ const examPaperList = [
 ]
 
 export default {
-  
+  data(){
+    return {
+      form:this.$form.createForm(this)
+    }
+  },
+  created(){
+  }
 }
 </script>

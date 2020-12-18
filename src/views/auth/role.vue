@@ -1,7 +1,7 @@
 <template>
   <div class="antd-panel">
     <div class="tool-tip">
-      <a-button type="primary">新建</a-button>
+      <a-button type="primary" v-action:add>新建</a-button>
     </div>
     <s-table
       size="default"
